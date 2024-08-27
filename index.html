@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanuavaka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Updated theme color to Blue with gradient effect */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(to right, #0056b3, #007bff);
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header img {
+            height: 50px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .header .info {
+            font-size: 0.9em;
+            text-align: right;
+            flex-basis: 100%;
+            margin-top: 10px;
+        }
+
+        .header .info a {
+            color: #fff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-right: 1px solid #ddd;
+            position: sticky;
+            top: 20px;
+            height: 100vh;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #0056b3;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #003a8c;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+            border-radius: 0 8px 8px 0;
+        }
+
+        h2 {
+            color: #0056b3;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .paper-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .paper-link {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .paper-link a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .paper-link a:hover {
+            text-decoration: underline;
+        }
+
+        .author-list {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .author-list span {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .author-affiliations {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .publication-details {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background: linear-gradient(to right, #007BFF, #0056b3);
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .download-btn i {
+            margin-left: 5px;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(to right, #0056b3, #004080);
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metrics div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .metrics div i {
+            color: #007BFF;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .system-architecture img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                position: relative;
+                border-radius: 8px;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px; 
+            animation: fadeInModal 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); }
+            to { transform: translateY(0); }
+        }
+
+        /* References styling */
+        .references {
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .references p {
+            margin-bottom: 10px;
+        }
+
+        .references p span {
+            display: inline-block;
+            min-width: 30px;
+        }
+
+        /* Styling for software screenshots */
+        .software-screenshots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .software-screenshots img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="Vanuavaka Logo">
+        <h1>Vanuavaka</h1>
+        <div class="info">
+            <p>27 Aug 2024 | <a id="cite-project">Project Information</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="#abstract">Abstract</a>
+            <a href="#introduction">Introduction</a>
+            <a href="#methodology">Methodology</a>
+            <a href="#results">Results</a>
+            <a href="#software-implementation">Software Implementation</a>
+            <a href="#discussion">Discussion</a>
+            <a href="#conclusion">Conclusion</a>
+            <a href="#references">References</a>
+        </div>
+        <div class="main-content">
+            <div class="download-section">
+                <a href="https://blockchainland-3389c.web.app/" class="download-btn" download>Open Project <i class="fas fa-folder-open"></i></a>
+            </div>
+
+            <div class="paper-title">
+                Vanuavaka: A Blockchain-Powered Peer-to-Peer Land Marketplace
+            </div>
+
+            <div class="author-list">
+                <span>Software Project by <b><i>Rishal Ravikesh Chand</i></b> and <b><i>A B M Shawkat Ali</i></b></span>
+            </div>
+
+            <div class="publication-details">
+                Online: 27 August 2024
+            </div>
+
+            <div class="paper-link">
+                <p>Related Research Article: <a href="https://doi.org/10.1109/Blockchain60715.2023.00048" target="_blank">Blockchain-Based Smart Contracts for Land Title Registry Opportunities and Adaption for Fiji</a></p>
+            </div>
+
+            <h2 id="abstract">Abstract</h2>
+            <p>This project presents the development and implementation of a blockchain-based decentralized application (DApp) for securing landownership in Fiji. The proposed system leverages the Ethereum blockchain, smart contracts, and the InterPlanetary File System (IPFS) to create a secure, transparent, and efficient process for land registration and ownership transfer. The system addresses key issues in Fiji's current land registration process, such as fraud, inefficiency, and lack of transparency, by eliminating intermediaries and automating transactions. The paper details the architecture of the DApp, its implementation, and the potential impact on Fiji's real estate sector.</p>
+
+            <h2 id="introduction">Introduction</h2>
+            <p>Land ownership and registration are critical components of economic development, particularly in developing countries like Fiji, where land is one of the most valuable assets. However, the current land registration system in Fiji is fraught with challenges, including outdated processes, the involvement of intermediaries, and a high risk of fraud. These issues contribute to delays, increased costs, and a lack of trust among stakeholders [1]. To address these challenges, this paper proposes a blockchain-based decentralized application (DApp) that leverages the transparency, security, and immutability of blockchain technology to revolutionize land registration and ownership transfer in Fiji.</p>
+            <p>The DApp is designed to eliminate the need for intermediaries by automating transactions through smart contracts and providing a secure, decentralized storage solution for land-related documents using IPFS [2]. By integrating these technologies, the system aims to streamline the land registration process, reduce the risk of fraud, and enhance trust among stakeholders.</p>
+
+            <h2 id="methodology">Methodology</h2>
+            <h3>Literature Review</h3>
+            <p>A comprehensive review of existing research on blockchain technology, smart contracts, and decentralized storage solutions was conducted [3]. This review provided the foundation for the system's design and helped identify the most suitable technologies for implementation.</p>
+
+            <h3>System Design</h3>
+            <p>The system architecture was designed to integrate the Ethereum blockchain, IPFS, and a user-friendly frontend interface. The architecture was divided into six layers: Frontend, Smart Contract Layer, Blockchain Layer, Decentralized Storage Layer, Backend, and Security and Compliance Layer. Each layer was carefully designed to ensure scalability, security, and compliance with local regulations [4].</p>
+
+            <h3>Development Environment</h3>
+            <p>The Hardhat development environment was used to develop and test the smart contracts. The Sepolia Testnet provided a safe testing environment that mimicked the Ethereum mainnet, allowing for thorough testing without the risk of losing real assets [5].</p>
+
+            <h3>Implementation</h3>
+            <p>The DApp was implemented using React for the frontend, Ethereum for the smart contracts, and IPFS for decentralized storage. MetaMask was integrated to enable users to interact with the Ethereum blockchain securely [6].</p>
+
+            <h3>Testing</h3>
+            <p>The system was rigorously tested on the Sepolia Testnet to identify and resolve any issues before deployment on the mainnet. Tests included functionality, security, and user acceptance testing [7].</p>
+
+            <h2 id="results">Results</h2>
+            <h3>Elimination of Intermediaries</h3>
+            <p>The system successfully removed the need for intermediaries by automating transactions through smart contracts, reducing costs and increasing transparency [9].</p>
+
+            <h3>Improved Security</h3>
+            <p>The use of blockchain and IPFS ensured that all transactions and documents were securely stored and immutable, significantly reducing the risk of fraud [10].</p>
+
+            <h3>Increased Efficiency</h3>
+            <p>The automated processes and decentralized storage reduced the time required for land registration and ownership transfer, making the process more efficient for all stakeholders [11].</p>
+
+            <h2 id="software-implementation">Software Implementation</h2>
+            <h3>Frontend</h3>
+            <p>The frontend was developed using React, providing a user-friendly interface for interacting with the DApp. The interface allows users to view available land parcels, initiate transactions, and manage their digital assets securely [12].</p>
+
+            <h3>Smart Contracts</h3>
+            <p>Smart contracts were developed using Solidity and deployed on the Ethereum blockchain. Key contracts included the Land Registration Contract, Ownership Transfer Contract, and Document Verification Contract. These contracts govern the rules for land transactions and ensure that all conditions are met before a transaction is finalized [13].</p>
+
+            <h3>Blockchain Integration</h3>
+            <p>The Ethereum blockchain was used as the backbone of the system, providing a decentralized, immutable ledger for recording all transactions. MetaMask was integrated to enable users to securely connect their Ethereum wallets to the DApp [14].</p>
+
+            <h3>Decentralized Storage</h3>
+            <p>IPFS was used to store large files, such as land titles and survey documents. Pinata was integrated to ensure that these files remained accessible and were not lost due to nodes going offline [15].</p>
+
+            <h3>Security and Compliance</h3>
+            <p>Data encryption and access control mechanisms were implemented to protect sensitive information and ensure compliance with Fijian legal requirements [16].</p>
+
+            <h3>System Architecture</h3>
+            <div class="system-architecture">
+                <img src="architecture.png" alt="System Architecture">
+            </div>
+
+            <h3>Screenshots of the Software</h3>
+            <p>Below are the screenshots demonstrating various features of the Vanuavaka software:</p>
+            <div class="software-screenshots">
+                <img src="fig2.png" alt="Record Registration" onclick="openLightbox('img1')">
+                <img src="fig3.png" alt="Registration List" onclick="openLightbox('img2')">
+                <img src="fig4.png" alt="Search Functionality" onclick="openLightbox('img3')">
+                <img src="fig5.png" alt="Bar Chart Analytics" onclick="openLightbox('img4')">
+                <img src="fig6.png" alt="Scatter Plot Analytics" onclick="openLightbox('img5')">
+                <img src="fig7.png" alt="Heatmap Analytics" onclick="openLightbox('img6')">
+            </div>
+
+            <!-- Lightbox -->
+            <div id="img1" class="lightbox">
+                <span class="close" onclick="closeLightbox('img1')">&times;</span>
+                <img src="fig2.png" alt="Record Registration">
+            </div>
+            <div id="img2" class="lightbox">
+                <span class="close" onclick="closeLightbox('img2')">&times;</span>
+                <img src="fig3.png" alt="Registration List">
+            </div>
+            <div id="img3" class="lightbox">
+                <span class="close" onclick="closeLightbox('img3')">&times;</span>
+                <img src="fig4.png" alt="Search Functionality">
+            </div>
+            <div id="img4" class="lightbox">
+                <span class="close" onclick="closeLightbox('img4')">&times;</span>
+                <img src="fig5.png" alt="Bar Chart Analytics">
+            </div>
+            <div id="img5" class="lightbox">
+                <span class="close" onclick="closeLightbox('img5')">&times;</span>
+                <img src="fig6.png" alt="Scatter Plot Analytics">
+            </div>
+            <div id="img6" class="lightbox">
+                <span class="close" onclick="closeLightbox('img6')">&times;</span>
+                <img src="fig7.png" alt="Heatmap Analytics">
+            </div>
+
+            <h2 id="discussion">Discussion</h2>
+            <p>The implementation of the DApp demonstrates the potential of blockchain technology to revolutionize land registration and ownership transfer in Fiji. By leveraging the transparency, security, and immutability of blockchain, the system addresses key challenges in the current process, including fraud, inefficiency, and lack of trust [17]. The use of IPFS for decentralized storage ensures that all land-related documents are securely stored and accessible, reducing the risk of data loss or tampering.</p>
+            <p>The DApp also highlights the importance of legal compliance and user education in the successful adoption of blockchain technology. While the system provides a secure and efficient solution, its success depends on the willingness of stakeholders to adopt the technology and the ability of the legal system to recognize and enforce blockchain-based transactions [18].</p>
+
+            <h2 id="conclusion">Conclusion</h2>
+            <p>This paper presents a comprehensive solution for securing landownership in Fiji using blockchain technology. The proposed DApp leverages the strengths of Ethereum, smart contracts, and IPFS to create a secure, transparent, and efficient system for land registration and ownership transfer. By addressing key challenges in the current process, the system has the potential to significantly improve the land management landscape in Fiji.</p>
+            <p>Future work will focus on scaling the system to handle a larger volume of transactions and exploring the integration of additional features, such as decentralized finance (DeFi) services and enhanced user interfaces. Continued collaboration with government bodies and legal experts will be essential to ensure the system's success and compliance with local regulations.</p>
+
+            <h2 id="references">References</h2>
+            <div class="references">
+                <p><span>[1]</span> Christidis, K., & Devetsikiotis, M. (2016). Blockchains and Smart Contracts for the Internet of Things. IEEE Access, 4, 2292-2303.</p>
+                <p><span>[2]</span> Zyskind, G., Nathan, O., & Pentland, A. (2015). Decentralizing Privacy: Using Blockchain to Protect Personal Data. IEEE Security and Privacy Workshops, 180-184.</p>
+                <p><span>[3]</span> Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.</p>
+                <p><span>[4]</span> Buterin, V. (2013). Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform.</p>
+                <p><span>[5]</span> Wood, G. (2014). Ethereum: A Secure Decentralized Generalized Transaction Ledger. Ethereum Project Yellow Paper.</p>
+                <p><span>[6]</span> Mougayar, W. (2016). The Business Blockchain: Promise, Practice, and Application of the Next Internet Technology. Wiley.</p>
+                <p><span>[7]</span> Ali, M., Nelson, J., Shea, R., & Freedman, M. J. (2016). Blockstack: A Global Naming and Storage System Secured by Blockchains. Proceedings of the 2016 USENIX Annual Technical Conference, 181-194.</p>
+                <p><span>[8]</span> Crosby, M., Pattanayak, P., Verma, S., & Kalyanaraman, V. (2016). Blockchain Technology: Beyond Bitcoin. Applied Innovation Review, 2, 6-19.</p>
+                <p><span>[9]</span> Benet, J. (2014). IPFS - Content Addressed, Versioned, P2P File System.</p>
+                <p><span>[10]</span> Pilkington, M. (2016). Blockchain Technology: Principles and Applications. In: Olleros, F.X., & Zhegu, M. (Eds.), Research Handbook on Digital Transformations (pp. 225-253). Edward Elgar.</p>
+                <p><span>[11]</span> Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An Overview of Blockchain Technology: Architecture, Consensus, and Future Trends. 2017 IEEE International Congress on Big Data (BigData Congress), 557-564.</p>
+                <p><span>[12]</span> Yaga, D., Mell, P., Roby, N., & Scarfone, K. (2019). Blockchain Technology Overview. National Institute of Standards and Technology.</p>
+                <p><span>[13]</span> Greenspan, G. (2015). MultiChain Private Blockchain - White Paper.</p>
+                <p><span>[14]</span> Wright, A., & De Filippi, P. (2015). Decentralized Blockchain Technology and the Rise of Lex Cryptographia. SSRN Electronic Journal.</p>
+                <p><span>[15]</span> Zhang, P., White, J., Schmidt, D. C., & Lenz, G. (2017). Applying Software Patterns to Address Interoperability in Blockchain-Based Healthcare Apps. 2017 IEEE International Conference on Blockchain (Blockchain), 159-166.</p>
+                <p><span>[16]</span> Seibold, S., & Samman, G. (2016). Consensus: Immutable Agreement for the Internet of Value. KPMG Report.</p>
+                <p><span>[17]</span> Underwood, S. (2016). Blockchain Beyond Bitcoin. Communications of the ACM, 59(11), 15-17.</p>
+                <p><span>[18]</span> Glaser, F. (2017). Pervasive Decentralisation of Digital Infrastructures: A Framework for Blockchain Enabled System and Use Case Analysis. Proceedings of the 50th Hawaii International Conference on System Sciences, 1543-1552.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Vanuavaka. All rights reserved.
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Project Information</h2>
+            <p><strong>Developers:</strong> <b><i>Rishal Ravikesh Chand</i></b>, <b><i>A B M Shawkat Ali</i></b></p>
+            <p><strong>Title:</strong> Vanuavaka: A Blockchain-Powered Peer-to-Peer Land Marketplace</p>
+            <p><strong>Category:</strong> GitHub Project</p>
+            <p><strong>Date Added:</strong> 27 August 2024</p>
+            <p><strong>Link:</strong> <a href="https://vanuavaka.github.io/2024.VNUA98872" target="_blank">https://vanuavaka.github.io/2024.VNUA98872</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript remains unchanged
+        var modal = document.getElementById("myModal");
+
+        var btn = document.getElementById("cite-project");
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function openLightbox(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        function closeLightbox(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+    </script>
+</body>
+</html>
